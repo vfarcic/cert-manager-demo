@@ -1,0 +1,28 @@
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: devops-toolkit
+  labels:
+    app: devops-toolkit
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+           name: devops-toolkit
+           port:
+             number: 80
+    host: devops-toolkit.35.185.71.107.nip.io
+  tls:
+  - hosts:
+    - devops-toolkit.35.185.71.107.nip.io
+    secretName: letsencrypt
