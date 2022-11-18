@@ -1,0 +1,15 @@
+---
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: silly-demo
+spec:
+  secretName: silly-demo
+  issuerRef:
+    kind: ClusterIssuer
+    name: production
+  commonName: app.silly-demo.com
+  dnsNames:
+  - app.silly-demo.com
+
